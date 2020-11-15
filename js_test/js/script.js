@@ -3,48 +3,48 @@ const question_container = document.getElementById('question_container')
 const question_element = document.getElementById('question')
 const answer_element = document.getElementById('answers')
 
-let total_score, question_index
+let total_score, question_index, experience_value
 let total = 0
 
 const questions = [
     {
         question: 'how much you like beans kid',
         answers: [
-            {score: 5},
-            {score: 15},
-            {score: 50},
+            {score: 95},
             {score: 85},
-            {score: 95}
+            {score: 50},
+            {score: 15},
+            {score: 5}
         ]
     },
     {
         question: 'you got any games on your phone?',
         answers: [
-            {score: 5},
-            {score: 15},
-            {score: 50},
+            {score: 95},
             {score: 85},
-            {score: 95}
+            {score: 50},
+            {score: 15},
+            {score: 5}
         ]
     },
     {
         question: 'gee i sure hope this works correctly',
         answers: [ 
-            {score: 5},
-            {score: 15},
-            {score: 50},
+            {score: 95},
             {score: 85},
-            {score: 95}
+            {score: 50},
+            {score: 15},
+            {score: 5}
         ]
     },
     {
         question: 'on a scale from 1 to 5,',
         answers: [
-            {score: 5},
-            {score: 15},
-            {score: 50},
+            {score: 95},
             {score: 85},
-            {score: 95}
+            {score: 50},
+            {score: 15},
+            {score: 5}
         ]
     },
 ]
@@ -112,15 +112,12 @@ function show_question(question) {
                 break;
         }
         count++
-        button.addEventListener('click', waiting)
+        button.addEventListener('click', select_answer)
         answer_element.appendChild(button)
     })
 
 }
 
-function waiting (event) {
-    setTimeout(select_answer(event), 3000)
-}
 
 
 function select_answer(event) {
@@ -153,4 +150,19 @@ function final_calculations() {
     console.log(question_index)
     console.log(total_score)
     question_container.classList.add('hide')
+
+    assign_study()
+
+}
+
+function assign_study() {
+    if(total_score >= 5 && total_score <= 25) {
+        experience_value = 1
+    }
+    if(total_score > 25 && total_score < 75) {
+        experience_value = 2
+    }
+    if(total_score >= 75 && total_score <= 95) {
+        experience_value = 3
+    }
 }
